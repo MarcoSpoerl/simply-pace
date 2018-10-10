@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simply Pace</string>
+    <string name="title_activity_help">Help</string>
+    <string name="title_activity_license_info">License info</string>
+    <string name="action_help">Help</string>
+    <string name="action_license_info">License info</string>
+    <string name="distance_caption_0">This distance &#8230;</string>
+    <string name="time_caption_0">This time &#8230;</string>
+    <string name="pace_caption_0">This pace &#8230;</string>
+    <string name="distance_caption_1">&#8230; over this distance &#8230;</string>
+    <string name="time_caption_1">&#8230; with this time &#8230;</string>
+    <string name="pace_caption_1">&#8230; with this pace &#8230;</string>
+    <string name="distance_caption_2">&#8230; results in this distance</string>
+    <string name="time_caption_2">&#8230; results in this time</string>
+    <string name="pace_caption_2">&#8230; results in this pace</string>
+</resources>

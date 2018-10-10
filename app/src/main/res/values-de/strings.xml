@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simply Pace</string>
+    <string name="title_activity_help">Hilfe</string>
+    <string name="title_activity_license_info">Lizenzhinweise</string>
+    <string name="action_help">Hilfe</string>
+    <string name="action_license_info">Lizenzhinweise</string>
+    <string name="distance_caption_0">Diese Strecke &#8230;</string>
+    <string name="distance_caption_1">&#8230; über diese Strecke &#8230;</string>
+    <string name="distance_caption_2">&#8230; ergibt diese Strecke</string>
+    <string name="pace_caption_0">Dieser Pace &#8230;</string>
+    <string name="pace_caption_1">&#8230; mit diesem Pace &#8230;</string>
+    <string name="pace_caption_2">&#8230; ergibt diesen Pace</string>
+    <string name="time_caption_0">Diese Zeit &#8230;</string>
+    <string name="time_caption_1">&#8230; mit dieser Zeit &#8230;</string>
+    <string name="time_caption_2">&#8230; ergibt diese Zeit</string>
+</resources>
