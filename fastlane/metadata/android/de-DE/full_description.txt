@@ -1,0 +1,3 @@
+Simply Pace ist ein einfacher Pace-Rechner. Die App konzentriert sich auf Distanz, Zeit und Pace. Ohne irgendwelchen zusätzlichen Wirrwarr.
+
+Hintergrund der Funktionsgrafik © besopha / Wikimedia Commons / CC-BY-SA-2.0

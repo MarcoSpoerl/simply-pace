@@ -1,0 +1,3 @@
+Simply Pace is a very simple pace calculator. It concentrates on distance, time, and pace. Without any additional clutter.
+
+Feature graphic background © besopha / Wikimedia Commons / CC-BY-SA-2.0
