@@ -13,6 +13,7 @@
 Gemfile
 Gemfile.lock
 **/fastlane/Appfile
+**/fastlane/Fastfile
 **/fastlane/report.xml
 **/fastlane/Preview.html
 **/fastlane/README.md
