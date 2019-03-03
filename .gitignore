@@ -10,3 +10,12 @@
 /build
 /captures
 .externalNativeBuild
+Gemfile
+Gemfile.lock
+**/fastlane/Appfile
+**/fastlane/Fastfile
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/README.md
+**/fastlane/screenshots
+**/fastlane/test_output
