@@ -13,7 +13,7 @@ Available on [Google Play](https://play.google.com/store/apps/details?id=com.mar
 
 ## Donations
 
-If you like Simply Pace, please consider buying me coffee. :coffee: :simple_smile:
+If you like Simply Pace, please consider buying me coffee. :coffee: :smile:
 
 [![Buy Me A Coffee button](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png "Buy Me A Coffee")](https://www.buymeacoffee.com/marcospoerl)
 
