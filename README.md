@@ -4,7 +4,12 @@ Calculate your pace. No more. No less.
 
 Simply Pace is a very simple pace calculator app for Android. It concentrates on distance, time, and pace. Without any additional clutter. 
 
-Available on [Google Play](https://play.google.com/store/apps/details?id=com.marcospoerl.simplypace).
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/com.marcospoerl.simplypace/)
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
+     alt="Get it on Google Play"
+     height="80">](https://play.google.com/store/apps/details?id=com.marcospoerl.simplypace)
 
 ## Screenshots
 
