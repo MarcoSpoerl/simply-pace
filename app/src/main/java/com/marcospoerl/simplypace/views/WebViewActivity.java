@@ -33,7 +33,7 @@ public abstract class WebViewActivity extends AppCompatActivity {
     private void setText() {
         final String content = readRawTextFile();
         final WebView webView = (WebView) findViewById(getWebViewId());
-        webView.loadData(content, "text/html", null);
+        webView.loadDataWithBaseURL("file:///android_asset/", content, "text/html", null, null);
     }
 
     private String readRawTextFile() {
