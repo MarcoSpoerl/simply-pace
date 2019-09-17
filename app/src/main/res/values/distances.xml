@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="distance_array">
+        <item>Custom</item>
+        <item>5 km</item>
+        <item>10 km</item>
+        <item>21.0975 km</item>
+        <item>42.195 km</item>
+    </string-array>
+</resources>

@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Support for Android 10
+- Preselect distance choices
 
 ## 1.0.4 - 2019-03-03
 ### Removed
