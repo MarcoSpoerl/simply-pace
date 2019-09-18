@@ -23,3 +23,4 @@ If you like Simply Pace, please consider buying me coffee. :coffee: :smile:
 
 ![Main screenshot](/fastlane/metadata/android/en-US/images/phoneScreenshots/1-main.png?raw=true "Main screen")
 ![Time input screenshot](/fastlane/metadata/android/en-US/images/phoneScreenshots/2-time.png?raw=true "Time input")
+![Preselect distance screenshot](/fastlane/metadata/android/en-US/images/phoneScreenshots/3-distance.png?raw=true "Preselect distance")

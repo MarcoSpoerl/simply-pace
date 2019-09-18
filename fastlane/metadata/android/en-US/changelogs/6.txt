@@ -1,0 +1,2 @@
+Updated for Android 10 Q
+Added preselect distance choices
