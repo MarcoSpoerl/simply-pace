@@ -1,8 +1,8 @@
 package com.marcospoerl.simplypace.views;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.webkit.WebView;
 
 import com.marcospoerl.simplypace.R;
@@ -33,7 +33,7 @@ public abstract class WebViewActivity extends AppCompatActivity {
     private void setText() {
         final String content = readRawTextFile();
         final WebView webView = (WebView) findViewById(getWebViewId());
-        webView.loadData(content, "text/html", null);
+        webView.loadDataWithBaseURL("file:///android_asset/", content, "text/html", null, null);
     }
 
     private String readRawTextFile() {

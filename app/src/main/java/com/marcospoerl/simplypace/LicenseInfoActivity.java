@@ -1,6 +1,6 @@
 package com.marcospoerl.simplypace;
 
-import android.support.v4.app.NavUtils;
+import androidx.core.app.NavUtils;
 import android.view.MenuItem;
 
 import com.marcospoerl.simplypace.views.WebViewActivity;

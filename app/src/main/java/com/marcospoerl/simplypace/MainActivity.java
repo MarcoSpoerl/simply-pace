@@ -1,11 +1,10 @@
 package com.marcospoerl.simplypace;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +25,10 @@ import com.woxthebox.draglistview.DragListView;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.concurrent.TimeUnit;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class MainActivity extends AppCompatActivity implements NumberPickerDialogFragment.NumberPickerDialogHandlerV2,
         HmsPickerDialogFragment.HmsPickerDialogHandlerV2 {
@@ -158,6 +161,29 @@ public class MainActivity extends AppCompatActivity implements NumberPickerDialo
     }
 
     private void showDistancePicker() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.title_distance_dialog);
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.setItems(R.array.distance_array, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (i == 0) {
+                    showCustomDistancePicker();
+                } else {
+                    final String[] distances = getResources().getStringArray(R.array.distance_array);
+                    final String selectedDistance = distances[i].replaceAll("[^\\d.]+", "");
+                    final BigDecimal distanceInKm = new BigDecimal(selectedDistance);
+                    distanceTerm.setDistanceInKilometer(distanceInKm);
+                    calculateTerm();
+                }
+            }
+        });
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void showCustomDistancePicker() {
         final NumberPickerBuilder npb = new NumberPickerBuilder()
                 .setFragmentManager(getSupportFragmentManager())
                 .setStyleResId(R.style.BetterPickersDialogFragment_Light)
