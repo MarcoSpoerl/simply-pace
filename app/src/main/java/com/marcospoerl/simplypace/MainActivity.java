@@ -16,6 +16,7 @@ import com.codetroopers.betterpickers.numberpicker.NumberPickerDialogFragment;
 import com.marcospoerl.simplypace.adapter.TermAdapter;
 import com.marcospoerl.simplypace.model.Calculator;
 import com.marcospoerl.simplypace.model.DistanceTerm;
+import com.marcospoerl.simplypace.model.PaceMode;
 import com.marcospoerl.simplypace.model.PaceTerm;
 import com.marcospoerl.simplypace.model.Term;
 import com.marcospoerl.simplypace.model.TimeTerm;
@@ -30,6 +31,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import static com.marcospoerl.simplypace.model.PaceMode.KMH;
+import static com.marcospoerl.simplypace.model.PaceMode.MIN;
+import static com.marcospoerl.simplypace.model.PaceMode.MIN100;
+
 public class MainActivity extends AppCompatActivity implements NumberPickerDialogFragment.NumberPickerDialogHandlerV2,
         HmsPickerDialogFragment.HmsPickerDialogHandlerV2 {
 
@@ -39,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements NumberPickerDialo
     private static final String DISTANCE_POS_KEY = "distancePos";
     private static final String TIME_POS_KEY = "timePos";
     private static final String PACE_POS_KEY = "pacePos";
+    private static final String PACE_MODE_KEY = "paceMode";
 
     private final DistanceTerm distanceTerm = new DistanceTerm();
     private final TimeTerm timeTerm = new TimeTerm();
@@ -79,7 +85,11 @@ public class MainActivity extends AppCompatActivity implements NumberPickerDialo
 
     @Override
     public void onDialogNumberSet(int reference, BigInteger number, double decimal, boolean isNegative, BigDecimal fullNumber) {
-        this.distanceTerm.setDistanceInKilometer(fullNumber);
+        if  (Term.TYPE_DISTANCE == reference){
+            this.distanceTerm.setDistanceInKilometer(fullNumber);
+        } else if (Term.TYPE_PACE == reference){
+            this.paceTerm.setPace(fullNumber);
+        }
         calculateTerm();
     }
 
@@ -88,22 +98,48 @@ public class MainActivity extends AppCompatActivity implements NumberPickerDialo
         final long totalSeconds = TimeUnit.HOURS.toSeconds(hours) + TimeUnit.MINUTES.toSeconds(minutes) + seconds;
         if (Term.TYPE_TIME == reference) {
             this.timeTerm.setTimeInSeconds(BigDecimal.valueOf(totalSeconds));
-        } else {
-            this.paceTerm.setSecondsPerKilometer(BigDecimal.valueOf(totalSeconds));
+        } else if (Term.TYPE_PACE == reference) {
+            this.paceTerm.setPace(BigDecimal.valueOf(totalSeconds));
         }
         calculateTerm();
     }
+
+    private PaceMode getPaceMode(){
+        final SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        PaceMode paceMode = PaceMode.valueOf(preferences.getString(PACE_MODE_KEY, PaceMode.MIN.toString()));
+        return paceMode;
+    }
+
+    private void updatePaceMode(PaceMode paceMode){
+        final SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(PACE_MODE_KEY, paceMode.toString());
+        editor.apply();
+
+        paceTerm.setPaceMode(getPaceMode());
+        calculateTerm();
+    }
+
 
     private void createListAdapter() {
         final SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         this.distanceTerm.setDistanceInMeter(new BigDecimal(preferences.getString(DISTANCE_KEY, "0")));
         this.timeTerm.setTimeInSeconds(new BigDecimal(preferences.getString(TIME_KEY, "0")));
         this.paceTerm.setSecondsPerKilometer(new BigDecimal(preferences.getString(PACE_KEY, "0")));
+        this.paceTerm.setPaceMode(getPaceMode());
         this.termAdapter = new TermAdapter();
         this.termAdapter.add(this.distanceTerm, preferences.getInt(DISTANCE_POS_KEY, 0));
         this.termAdapter.add(this.timeTerm, preferences.getInt(TIME_POS_KEY, 1));
         this.termAdapter.add(this.paceTerm, preferences.getInt(PACE_POS_KEY, 2));
         this.termAdapter.notifyDataSetChanged();
+        this.termAdapter.setOnItemLongClickedListener(new TermAdapter.OnItemLongClickedListener() {
+            @Override
+            public void onItemLongClicked(HolderView holderView) {
+                if (holderView.getTerm().getType() == Term.TYPE_PACE){
+                    showPaceModePicker();
+                }
+            }
+        });
         this.termAdapter.setOnItemClickedListener(new TermAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(HolderView holderView) {
@@ -160,6 +196,30 @@ public class MainActivity extends AppCompatActivity implements NumberPickerDialo
         this.termAdapter.notifyDataSetChanged();
     }
 
+    private void showPaceModePicker(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.title_pace_mode_dialog);
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.setItems(R.array.pace_modes_array, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                switch (i){
+                    case 0:
+                        updatePaceMode(MIN);
+                        break;
+                    case 1:
+                        updatePaceMode(KMH);
+                        break;
+                    case 2:
+                        updatePaceMode(MIN100);
+                        break;
+                }
+            }
+        });
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     private void showDistancePicker() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.title_distance_dialog);
@@ -202,10 +262,16 @@ public class MainActivity extends AppCompatActivity implements NumberPickerDialo
     }
 
     private void showPacePicker() {
-        final HmsPickerBuilder hpb = new HmsPickerBuilder()
-                .setFragmentManager(getSupportFragmentManager())
-                .setStyleResId(R.style.BetterPickersDialogFragment_Light)
-                .setReference(Term.TYPE_PACE);
-        hpb.show();
+        if (getPaceMode().equals(PaceMode.MIN) || getPaceMode().equals(MIN100)) {
+            new HmsPickerBuilder()
+                    .setFragmentManager(getSupportFragmentManager())
+                    .setStyleResId(R.style.BetterPickersDialogFragment_Light)
+                    .setReference(Term.TYPE_PACE).show();
+        } else {
+            new NumberPickerBuilder()
+                    .setFragmentManager(getSupportFragmentManager())
+                    .setStyleResId(R.style.BetterPickersDialogFragment_Light)
+                    .setReference(Term.TYPE_PACE).show();
+        }
     }
 }

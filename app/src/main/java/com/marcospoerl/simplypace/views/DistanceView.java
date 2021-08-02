@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.marcospoerl.simplypace.R;
-import com.marcospoerl.simplypace.model.DistanceTerm;
 
 public class DistanceView extends HolderView {
 
@@ -33,13 +32,5 @@ public class DistanceView extends HolderView {
                 this.captionTextView.setText(R.string.distance_caption_2);
                 break;
         }
-    }
-
-    @Override
-    protected void bind() {
-        final DistanceTerm distanceTerm = (DistanceTerm) this.term;
-        final double km = distanceTerm.getDistanceInKilometer().doubleValue();
-        final String text = String.format("%.3f km", km);
-        this.valueTextView.setText(text);
     }
 }

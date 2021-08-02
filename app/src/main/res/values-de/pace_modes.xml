@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pace_modes_array">
+        <item>Running pace (min/km)</item>
+        <item>Fahrgeschwindigkeit (km/h)</item>
+        <item>Schwimm splits (min/100m)</item>
+    </string-array>
+</resources>

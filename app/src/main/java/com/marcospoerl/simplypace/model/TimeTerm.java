@@ -3,6 +3,7 @@ package com.marcospoerl.simplypace.model;
 import com.google.common.base.Objects;
 
 import java.math.BigDecimal;
+import java.util.concurrent.TimeUnit;
 
 public class TimeTerm implements Term {
 
@@ -43,5 +44,14 @@ public class TimeTerm implements Term {
     @Override
     public int hashCode() {
         return Objects.hashCode(this.timeInSeconds);
+    }
+
+    @Override
+    public String asText() {
+        final long seconds = getTimeInSeconds().longValue();
+        return String.format("%02dh:%02dm:%02ds",
+                TimeUnit.SECONDS.toHours(seconds),
+                TimeUnit.SECONDS.toMinutes(seconds) - TimeUnit.HOURS.toMinutes(TimeUnit.SECONDS.toHours(seconds)),
+                TimeUnit.SECONDS.toSeconds(seconds) - TimeUnit.MINUTES.toSeconds(TimeUnit.SECONDS.toMinutes(seconds)));
     }
 }

@@ -15,4 +15,5 @@
     <string name="time_caption_2">&#8230; results in this time</string>
     <string name="pace_caption_2">&#8230; results in this pace</string>
     <string name="title_distance_dialog">Distance</string>
+    <string name="title_pace_mode_dialog">Pace mode</string>
 </resources>

@@ -53,4 +53,9 @@ public class DistanceTerm implements Term {
     public int hashCode() {
         return Objects.hashCode(this.distanceInMeter);
     }
+
+    @Override
+    public String asText() {
+        return String.format("%.3f km", getDistanceInKilometer().doubleValue());
+    }
 }

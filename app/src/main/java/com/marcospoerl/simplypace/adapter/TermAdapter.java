@@ -18,7 +18,13 @@ public class TermAdapter extends DragItemAdapter<Term, TermAdapter.ViewHolder> {
         void onItemClicked(HolderView holderView);
     }
 
+    public interface OnItemLongClickedListener {
+        void onItemLongClicked(HolderView holderView);
+    }
+
     private OnItemClickedListener onItemClickedListener;
+    private OnItemLongClickedListener onItemLongClickedListener;
+
 
     public TermAdapter() {
         setItemList(new LinkedList<Term>());
@@ -27,6 +33,10 @@ public class TermAdapter extends DragItemAdapter<Term, TermAdapter.ViewHolder> {
 
     public void setOnItemClickedListener(OnItemClickedListener onItemClickedListener) {
         this.onItemClickedListener = onItemClickedListener;
+    }
+
+    public void setOnItemLongClickedListener(OnItemLongClickedListener onItemLongClickedListener) {
+        this.onItemLongClickedListener = onItemLongClickedListener;
     }
 
     public void add(Term term, int location) {
@@ -81,6 +91,14 @@ public class TermAdapter extends DragItemAdapter<Term, TermAdapter.ViewHolder> {
             if (onItemClickedListener != null && view instanceof HolderView) {
                 onItemClickedListener.onItemClicked((HolderView) view);
             }
+        }
+
+        @Override
+        public boolean onItemLongClicked(View view) {
+            if (onItemLongClickedListener != null && view instanceof HolderView) {
+                onItemLongClickedListener.onItemLongClicked((HolderView) view);
+            }
+            return true;
         }
     }
 }

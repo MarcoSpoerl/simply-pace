@@ -15,4 +15,5 @@
     <string name="time_caption_1">&#8230; mit dieser Zeit &#8230;</string>
     <string name="time_caption_2">&#8230; ergibt diese Zeit</string>
     <string name="title_distance_dialog">Strecke</string>
+    <string name="title_pace_mode_dialog">Pace Modus</string>
 </resources>

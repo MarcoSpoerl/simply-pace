@@ -4,9 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.marcospoerl.simplypace.R;
-import com.marcospoerl.simplypace.model.PaceTerm;
-
-import java.util.concurrent.TimeUnit;
 
 public class PaceView extends HolderView {
 
@@ -35,15 +32,5 @@ public class PaceView extends HolderView {
                 this.captionTextView.setText(R.string.pace_caption_2);
                 break;
         }
-    }
-
-    @Override
-    protected void bind() {
-        final PaceTerm paceTerm = (PaceTerm) this.term;
-        final long seconds = paceTerm.getSecondsPerKilometer().longValue();
-        final String text = String.format("%d:%02d min/km",
-                TimeUnit.SECONDS.toMinutes(seconds),
-                TimeUnit.SECONDS.toSeconds(seconds) - TimeUnit.MINUTES.toSeconds(TimeUnit.SECONDS.toMinutes(seconds)));
-        this.valueTextView.setText(text);
     }
 }

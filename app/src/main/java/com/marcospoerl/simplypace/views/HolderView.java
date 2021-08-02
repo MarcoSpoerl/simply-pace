@@ -55,5 +55,7 @@ public abstract class HolderView extends CardView {
         return term;
     }
 
-    protected abstract void bind();
+    protected void bind() {
+        this.valueTextView.setText(term.asText());
+    }
 }
