@@ -1,5 +1,11 @@
 # Simply Pace
 
+## !!! Discontinued Product !!!
+
+Simply Pace is no longer maintained. Feel free to use the source code. But I won't add new features or fix bugs.
+
+## Description
+
 Calculate your pace. No more. No less.
 
 Simply Pace is a very simple pace calculator app for Android. It concentrates on distance, time, and pace. Without any additional clutter. 
